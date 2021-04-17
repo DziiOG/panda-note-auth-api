@@ -1,0 +1,93 @@
+{
+  "name": "pandas-auth-api",
+  "version": "1.0.0",
+  "description": "This is the skeleton structure of all cf auth apis (including microservices)",
+  "main": "app.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "nyc --all ---reporter=html --reporter=text --reporter=lcov --check-coverage --lines 70  mocha -ui tdd --timeout 30000 ./src/tests/**/*test.js --file ./src/tests/tear-down.js --exit",
+    "dev:win32": "set DEBUG=app,app:* && set NODE_ENV=DEV && nodemon -r pino-debug src/app.js",
+    "dev": "DEBUG=app,app:* NODE_ENV=DEV nodemon -r pino-debug src/app.js",
+    "start": "NODE_ENV=PROD pm2 start src/app.js",
+    "lint": "eslint --fix . --ignore-path .eslintignore"
+  },
+  "author": "Whitson Dzimah",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.787.0",
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "celebrate": "^13.0.4",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "email-templates": "^7.1.2",
+    "eventemitter3": "^4.0.7",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.2.0",
+    "helmet": "^4.2.0",
+    "hilary": "^5.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.20",
+    "mailchimp-api-v3": "^1.14.0",
+    "md5": "^2.3.0",
+    "moment": "^2.29.1",
+    "mongoose": "^5.10.13",
+    "multer": "^1.4.2",
+    "multer-s3": "^2.9.0",
+    "node-fetch": "^2.6.1",
+    "node-mocks-http": "^1.10.1",
+    "nodemailer": "^6.4.15",
+    "query-string": "^6.13.7",
+    "redis": "^3.0.2",
+    "sinon": "^9.2.4",
+    "slack-node": "^0.1.8",
+    "swagger-ui-express": "^4.1.4"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "debug": "^4.2.0",
+    "eslint": "^7.13.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-config-prettier-standard": "^3.0.1",
+    "eslint-plugin-json": "^2.1.2",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-standard": "^4.0.2",
+    "jsdoc": "^3.6.6",
+    "log4js": "^6.3.0",
+    "mocha": "^8.2.1",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.6",
+    "nyc": "^15.1.0",
+    "pino-debug": "^1.3.0",
+    "prettier": "^2.1.2",
+    "standard": "^16.0.1",
+    "standardjs": "^1.0.0-alpha",
+    "supertest": "^6.0.1",
+    "yarn-upgrade-all": "^0.5.4"
+  },
+  "nodemonConfig": {
+    "restartable": "rs",
+    "ignore": [
+      "node_modules/**/node_modules",
+      "tests/**/*.js"
+    ],
+    "delay": "2500"
+  },
+  "nyc": {
+    "exclude": [
+      "src/**/index.js",
+      "build",
+      "coverage",
+      "src/tests",
+      "app.js"
+    ]
+  },
+  "standard": {
+    "env": {
+      "mocha": true
+    }
+  }
+}

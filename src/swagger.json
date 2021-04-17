@@ -1,0 +1,3759 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "description": "Documentation For Pandas Authorizaton Application",
+      "version": "1.0.0",
+      "title": "Pands API Documentation",
+      "termsOfService": "http://swagger.io/terms/",
+      "contact": {
+        "email": "apiteam@swagger.io"
+      },
+      "license": {
+        "name": "Apache 2.0",
+        "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+      }
+    },
+    "security": [],
+    "servers": [
+      {
+        "url": "http://localhost:8001/api/v1/",
+        "description": "Development server"
+      },
+      {
+        "url": "-",
+        "description": "Staging server"
+      },
+      {
+        "url": "-",
+        "description": "Production server"
+      }
+    ],
+    "externalDocs": {
+      "description": "Find out more about Swagger",
+      "url": "http://swagger.io"
+    },
+    "tags": [
+      {
+        "name": "Pandas Api",
+        "description": "Basic API Template for Microservices",
+        "externalDocs": {
+          "description": "Find out more",
+          "url": "http://swagger.io"
+        }
+      }
+    ],
+    "paths": {
+      "/locations": {
+        "post": {
+          "tags": [
+            "Location"
+          ],
+          "summary": "Creates an location record",
+          "operationId": "insert",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "requestBody": {
+            "$ref": "#/components/requestBodies/Location"
+          },
+          "responses": {
+            "201": {
+              "$ref": "#/components/responses/Location"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "Location"
+          ],
+          "summary": "Retrives location",
+          "operationId": "get-location-record",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/Locations"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/ServerError"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        }
+      },
+      "/locations/{id}": {
+        "get": {
+          "tags": [
+            "Location"
+          ],
+          "summary": "Retrives a sigle record of a location by it ID",
+          "operationId": "get-location-by-id",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "The location ID to be retrived",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/Location"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        },
+        "patch": {
+          "tags": [
+            "Location"
+          ],
+          "summary": "Updates an location record",
+          "operationId": "task-update",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "The location ID to be updated",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "description": "For updating location",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/Location"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Location"
+          ],
+          "summary": "Delete location",
+          "description": "Deletes an location record which matches the params ID given",
+          "operationId": "deleteLocation",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "The location ID to be deleted",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/Location"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        }
+      },
+      "/blocks": {
+        "post": {
+          "tags": [
+            "Block"
+          ],
+          "summary": "Creates an Block record",
+          "operationId": "insert",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "requestBody": {
+            "$ref": "#/components/requestBodies/Block"
+          },
+          "responses": {
+            "201": {
+              "$ref": "#/components/responses/Block"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "Block"
+          ],
+          "summary": "Retrives Block",
+          "operationId": "get-Block-record",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/Blocks"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/ServerError"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        }
+      },
+      "/blocks/{id}": {
+        "get": {
+          "tags": [
+            "Block"
+          ],
+          "summary": "Retrives a sigle record of a Block by it ID",
+          "operationId": "get-Block-by-id",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "The Block ID to be retrived",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/Block"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        },
+        "patch": {
+          "tags": [
+            "Block"
+          ],
+          "summary": "Updates an Block record",
+          "operationId": "task-update",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "The Block ID to be updated",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "description": "For updating Block",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/Block"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Block"
+          ],
+          "summary": "Delete Block",
+          "description": "Deletes an Block record which matches the params ID given",
+          "operationId": "deleteTask",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "The block ID to be deleted",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/Block"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        }
+      },
+      "/inventories": {
+        "post": {
+          "tags": [
+            "Inventory"
+          ],
+          "summary": "Creates an inventory record",
+          "operationId": "insert",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "requestBody": {
+            "$ref": "#/components/requestBodies/Inventory"
+          },
+          "responses": {
+            "201": {
+              "$ref": "#/components/responses/Inventory"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "Inventory"
+          ],
+          "summary": "Retrives Inventory record",
+          "operationId": "Inventory-record",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/Inventories"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/ServerError"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        }
+      },
+      "/inventories/{id}": {
+        "get": {
+          "tags": [
+            "Inventory"
+          ],
+          "summary": "Retrives a signle record of an inventory by it ID",
+          "operationId": "get-inventory-by-id",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "The inventory ID to be retrived",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/Inventory"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        },
+        "patch": {
+          "tags": [
+            "Inventory"
+          ],
+          "summary": "Updates an Inventory record",
+          "operationId": "inventroy-update",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "The inventory ID to be updated",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "description": "For updating inventory",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/Inventory"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Inventory"
+          ],
+          "summary": "Delete Inventory",
+          "description": "Deletes an inventory record which matches the params ID given",
+          "operationId": "deleteInventory",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "The inventory ID to be deleted",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/Inventory"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        }
+      },
+      "/activities": {
+        "post": {
+          "tags": [
+            "Activity"
+          ],
+          "summary": "Creates an activity record",
+          "operationId": "insert",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "requestBody": {
+            "$ref": "#/components/requestBodies/Activity"
+          },
+          "responses": {
+            "201": {
+              "$ref": "#/components/responses/Activity"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "Activity"
+          ],
+          "summary": "Retrives activity record of a user",
+          "operationId": "get-user-activity-record",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/Activities"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/ServerError"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        }
+      },
+      "/activities/{id}": {
+        "get": {
+          "tags": [
+            "Activity"
+          ],
+          "summary": "Retrives a signle record of an activity by it ID",
+          "operationId": "get-activity-by-id",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "The activity ID to be retrived",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/Activity"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        },
+        "patch": {
+          "tags": [
+            "Activity"
+          ],
+          "summary": "Updates an activity record",
+          "operationId": "activity-update",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "The activity ID to be updated",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "description": "For updating the status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/Activity"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Activity"
+          ],
+          "summary": "Delete Activity",
+          "description": "Deletes an activity record which matches the params ID given",
+          "operationId": "deleteActivity",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "The activity ID to be deleted",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/Activity"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        }
+      },
+      "/tasks": {
+        "post": {
+          "tags": [
+            "Task"
+          ],
+          "summary": "Creates an task record",
+          "operationId": "insert",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "requestBody": {
+            "$ref": "#/components/requestBodies/Task"
+          },
+          "responses": {
+            "201": {
+              "$ref": "#/components/responses/Task"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "Task"
+          ],
+          "summary": "Retrives task",
+          "operationId": "get-task-record",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/Tasks"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/ServerError"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        }
+      },
+      "/tasks/{id}": {
+        "get": {
+          "tags": [
+            "Task"
+          ],
+          "summary": "Retrives a signle record of an task by it ID",
+          "operationId": "get-task-by-id",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "The task ID to be retrived",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/Task"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        },
+        "patch": {
+          "tags": [
+            "Task"
+          ],
+          "summary": "Updates an task record",
+          "operationId": "task-update",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "The task ID to be updated",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "$ref": "#/components/requestBodies/Task",
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/Task"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Task"
+          ],
+          "summary": "Delete Task",
+          "description": "Deletes an task record which matches the params ID given",
+          "operationId": "deleteTask",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "The task ID to be deleted",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/Task"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        }
+      },
+      "/task-schedulers": {
+        "post": {
+          "tags": [
+            "Task Scheduling"
+          ],
+          "summary": "Creates an task scheduling record",
+          "operationId": "insert",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "requestBody": {
+            "$ref": "#/components/requestBodies/TaskScheduler"
+          },
+          "responses": {
+            "201": {
+              "$ref": "#/components/responses/TaskScheduler"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "Task Scheduling"
+          ],
+          "summary": "Retrives task scheduling record",
+          "operationId": "get-task-scheduling-record",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/TaskSchedulers"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/ServerError"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        }
+      },
+      "/task-schedulers/{id}": {
+        "get": {
+          "tags": [
+            "Task Scheduling"
+          ],
+          "summary": "Retrives a signle record of an Task-Scheduling by it ID",
+          "operationId": "get-task-scheduling-by-id",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "The task scheduling ID to be retrived",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/TaskScheduler"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        },
+        "patch": {
+          "tags": [
+            "Task Scheduling"
+          ],
+          "summary": "Updates an task record",
+          "operationId": "task-update",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "The task scheduling ID to be updated",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "$ref": "#/components/requestBodies/Update-Schedulers",
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/TaskScheduler"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Task Scheduling"
+          ],
+          "summary": "Delete Task scheduling record",
+          "description": "Deletes an task scheduling record which matches the params ID given",
+          "operationId": "deleteTask",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "The task ID to be deleted",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/TaskScheduler"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        }
+      },
+      "/crop-categories": {
+        "post": {
+          "tags": [
+            "Crop Category"
+          ],
+          "summary": "Creates a crop category record",
+          "operationId": "post-crop-category",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "requestBody": {
+            "$ref": "#/components/requestBodies/CropCategory"
+          },
+          "responses": {
+            "201": {
+              "$ref": "#/components/responses/CropCategory"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "Crop Category"
+          ],
+          "summary": "Retrives crop category record",
+          "operationId": "get-crop-category",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/CropCategories"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/ServerError"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        }
+      },
+      "/crop-categories/{id}": {
+        "get": {
+          "tags": [
+            "Crop Category"
+          ],
+          "summary": "Retrives a signle record of an crop category by it ID",
+          "operationId": "get-crop-category-by-id",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "The Crop Category ID to be retrived",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/CropCategory"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        },
+        "patch": {
+          "tags": [
+            "Crop Category"
+          ],
+          "summary": "Updates a crop category record",
+          "operationId": "patch-crop-category",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "The Crop Category ID to be updated",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "description": "For updating crop category",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/CropCategory"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Crop Category"
+          ],
+          "summary": "Delete a crop category",
+          "description": "Deletes a crop category record which matches the params ID given",
+          "operationId": "delete-crop-category",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "The Crop-Category ID to be deleted",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/CropCategory"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        }
+      },
+      "/crops": {
+        "post": {
+          "tags": [
+            "Crops"
+          ],
+          "summary": "Creates a crop record",
+          "operationId": "post-crop",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "requestBody": {
+            "$ref": "#/components/requestBodies/CreateCrop"
+          },
+          "responses": {
+            "201": {
+              "$ref": "#/components/responses/Crop"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "Crops"
+          ],
+          "summary": "Retrives Farm record",
+          "operationId": "get-crops",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/Crops"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/ServerError"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        }
+      },
+      "/crops/{id}": {
+        "get": {
+          "tags": [
+            "Crops"
+          ],
+          "summary": "Retrives a signle record of an farm by it ID",
+          "operationId": "get-crop-by-id",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "The farm ID to be retrived",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/Crop"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        },
+        "patch": {
+          "tags": [
+            "Crops"
+          ],
+          "summary": "Updates an Farm record",
+          "operationId": "crop-update",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "The crop id to be updated",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "description": "For updating crop",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Crop"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/Crop"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Crops"
+          ],
+          "summary": "Delete Crop",
+          "description": "Deletes an Crop record which matches the params ID given",
+          "operationId": "delete-crop-by-id",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "The Crop ID to be deleted",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/Crop"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        }
+      },
+      "/crop-varieties": {
+        "post": {
+          "tags": [
+            "Crop Varieties"
+          ],
+          "summary": "Creates an crop varieties record",
+          "operationId": "crop-variety-post",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "requestBody": {
+            "$ref": "#/components/requestBodies/CreateCropVariety"
+          },
+          "responses": {
+            "201": {
+              "$ref": "#/components/responses/CreateCropVariety"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "Crop Varieties"
+          ],
+          "summary": "Retrives Farm record",
+          "operationId": "get-crop-varieties",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/CropVarieties"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/ServerError"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        }
+      },
+      "/crop-varieties/{id}": {
+        "get": {
+          "tags": [
+            "Crop Varieties"
+          ],
+          "summary": "Retrives a signle record of an farm by it ID",
+          "operationId": "get-crop-varieties-by-id",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "The farm ID to be retrived",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/CropVariety"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        },
+        "patch": {
+          "tags": [
+            "Crop Varieties"
+          ],
+          "summary": "Updates an Farm record",
+          "operationId": "update-crop-varieties-by-id",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "The crop id to be updated",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "description": "For updating crop",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CropVariety"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/CropVariety"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Crop Varieties"
+          ],
+          "summary": "Delete Crop Variety",
+          "description": "Deletes a Crop Variety record which matches the params ID given",
+          "operationId": "delete-crop-varieties-by-id",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "The Crop Variety ID to be deleted",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/CropVariety"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        }
+      },
+      "/ads/farms": {
+        "get": {
+          "tags": [
+            "Farm"
+          ],
+          "summary": "Retrives Farm record",
+          "operationId": "Farm-record",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/Farm"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/ServerError"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        }
+      },
+      "/farms": {
+        "post": {
+          "tags": [
+            "Farm"
+          ],
+          "summary": "Creates an Farm record",
+          "operationId": "insert",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "requestBody": {
+            "$ref": "#/components/requestBodies/Farm"
+          },
+          "responses": {
+            "201": {
+              "$ref": "#/components/responses/Farm"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "Farm"
+          ],
+          "summary": "Retrives Farm record",
+          "operationId": "Farm-record",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/Farm"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/ServerError"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        }
+      },
+      "/farms/{id}": {
+        "get": {
+          "tags": [
+            "Farm"
+          ],
+          "summary": "Retrives a signle record of an farm by it ID",
+          "operationId": "get-farm-by-id",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "The farm ID to be retrived",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/Farm"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        },
+        "patch": {
+          "tags": [
+            "Farm"
+          ],
+          "summary": "Updates an Farm record",
+          "operationId": "farm-update",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "The farm ID to be updated",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "description": "For updating farm",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Farm"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/Farm"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Farm"
+          ],
+          "summary": "Delete Farm",
+          "description": "Deletes an farm record which matches the params ID given",
+          "operationId": "deleteFarm",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "The farm ID to be deleted",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/Farm"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        }
+      },
+      "/farm-feeds": {
+        "post": {
+          "tags": [
+            "FarmFeed"
+          ],
+          "summary": "Creates an FarmFeed record",
+          "operationId": "insert",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "requestBody": {
+            "$ref": "#/components/requestBodies/FarmFeed"
+          },
+          "responses": {
+            "201": {
+              "$ref": "#/components/responses/FarmFeed"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "FarmFeed"
+          ],
+          "summary": "Retrives FarmFeed record",
+          "operationId": "FarmFeed-record",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/FarmFeeds"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/ServerError"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        }
+      },
+      "/farm-feeds/{id}": {
+        "get": {
+          "tags": [
+            "FarmFeed"
+          ],
+          "summary": "Retrives a signle record of an FarmFeed by it ID",
+          "operationId": "get-FarmFeed-by-id",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "The FarmFeed ID to be retrived",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/FarmFeed"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        },
+        "patch": {
+          "tags": [
+            "FarmFeed"
+          ],
+          "summary": "Updates an FarmFeed record",
+          "operationId": "FarmFeed-update",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "The FarmFeed ID to be updated",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "description": "For updating FarmFeed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FarmFeed"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/FarmFeed"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "FarmFeed"
+          ],
+          "summary": "Delete FarmFeed",
+          "description": "Deletes an FarmFeed record which matches the params ID given",
+          "operationId": "deleteFarmFeed",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "The FarmFeed ID to be deleted",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "$ref": "#/components/responses/FarmFeed"
+            },
+            "400": {
+              "$ref": "#/components/responses/Error"
+            },
+            "401": {
+              "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+              "$ref": "#/components/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/components/responses/NotFound"
+            },
+            "500": {
+              "$ref": "#/components/responses/ServerError"
+            }
+          }
+        }
+      }    
+    },
+    "components": {
+      "schemas": {
+        "Location": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "state": {
+              "type": "string"
+            },
+            "country": {
+              "type": "string"
+            },
+            "center": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "coords": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "Block": {   
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "location": {
+              "type": "string"
+            },
+            "coords": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "arable": {
+              "type": "string"
+            }
+          }  
+        },
+        "Inventory": {
+          "type": "object",
+          "properties": {
+             
+            "firstName": {
+              "type": "string"
+            },
+             
+            "lastName": {
+              "type": "string"
+            },
+            "age": {
+              "type": "number"
+            },
+            "gender": {
+              "type": "string",
+              "enum": ["male", "female", "others"]
+            },
+            "contact": {
+              "type": "string"
+            },
+            "momoDetails": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "momoNumber": {
+                  "type": "string"
+                }
+              }
+            },
+            "scannedId": {
+              "type": "string"
+            },
+            "role": {
+              "type": "string"
+            },
+            "model": {
+              "type": "string"
+            },
+            "year": {
+              "type": "number"
+            },
+            "description": {
+              "type": "string"
+            },
+            "designSpecifications": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "quantity": {
+              "type": "number"
+            },
+            "cost": {
+              "type": "number"
+            },
+            "expirationYear": {
+              "type": "number"
+            },
+            "manufacturingYear": {
+              "type": "number"
+            },
+            "type": {
+              "type": "string"
+            },
+            "compoundName": {
+              "type": "string"
+            },
+            "vendorName": {
+              "type": "string"
+            },
+            "serialNumber": {
+              "type": "string"
+            },
+            "farm": {
+              "type": "string"
+            },
+            "unit": {
+              "type": "string",
+              "enum": ["none", "litres", "boxes", "kg"],
+              "default": "none"
+            },
+            "category": {
+              "type": "string",
+              "enum": [
+                "Machinery and Equipment",
+                "People",
+                "Tools",
+                "Structures",
+                "Planting Materials",
+                "Chemicals",
+                "Consumables",
+                "Instrumentation",
+                "Legal"]
+            }
+          }
+        },
+        "CropCategory": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "description": {
+              "type": "number"
+            },
+            "imageUrl": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          }
+        },
+        "Crop": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "imageUrl": {
+              "type": "string"
+            },
+            "category": {
+              "type": "string"
+            },
+            "cycle": {
+              "type": "object",
+              "properties": {
+                "min": {
+                  "type": "number"
+                },
+                "max": {
+                  "type": "number"
+                }
+              }
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "ACTIVE",
+                "INACTIVE"
+              ],
+              "default": "INACTIVE"
+            }
+          }
+        },
+        "CropVariety": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "crop": {
+              "type": "string"
+            },
+            "imageUrl": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "ACTIVE",
+                "INACTIVE"
+              ],
+              "default": "INACTIVE"
+            }
+          }
+        },
+        "Farm": {
+          "type": "object",
+          "properties": {
+            "cropVariety": {
+              "type": "string"
+            },
+            "managers": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "acreage": {
+              "type": "number"
+            },
+            "startDate": {
+              "type": "string"
+            },
+            "marketingDeadline": {
+              "type": "string"
+            },
+            "projectedYieldPerAcre": {
+              "type": "number"
+            },
+            "projectedReturnsPerAcre": {
+              "type": "number"
+            },
+            "location": {
+              "type": "string"
+            },
+            "pricePerAcre": {
+              "type": "number"
+            },
+            "discount": {
+              "type": "string",
+              "default": "0"
+            },
+            "duration": {
+              "type": "number",
+              "default": 0
+            },
+            "priority": {
+              "type": "number"
+            },
+            "status": {
+              "type": "number",
+              "default": 0
+            }
+          }
+        },
+        "Activity": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "farm": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "priority": {
+              "type": "string"
+            },
+            "completedDate": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "PENDING",
+                "IN_PROGRESS",
+                "COMPLETED"
+              ]
+            }
+          }
+        },
+        "Task": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "farm": {
+              "type": "string"
+            },
+            "activity": {
+              "type": "string"
+            },
+            "budget": {
+              "type": "number"
+            },
+            "description": {
+              "type": "string"
+            },
+            "dependencies": {
+              "type": "string"
+            },
+            "kpis": {
+              "type": "string"
+            },
+            "warnings": {
+              "type": "string"
+            },
+            "duration": {
+              "type": "number"
+            },
+            "instructions": {
+              "type": "string"
+            },
+            "priority": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "quantity": {
+                    "type": "number"
+                  },
+                  "unit": {
+                    "type": "string",
+                    "enum": ["none", "litres", "boxes", "kg"],
+                    "default": "none"
+                  },
+                  "category": {
+                    "type": "string",
+                    "enum": [
+                      "Machinery and Equipment",
+                      "People",
+                      "Tools",
+                      "Structures",
+                      "Planting Materials",
+                      "Chemicals",
+                      "Consumables",
+                      "Instrumentation",
+                      "Legal"]
+                  }
+                }
+              }
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "PENDING",
+                "IN_PROGRESS",
+                "COMPLETED"
+              ]
+            }
+          }
+        },
+        "TaskScheduler": {
+          "type": "object",
+          "properties": {
+            "user": {
+              "type": "string"
+            },
+            "task": {
+              "type": "string"
+            },
+            "farm": {
+              "type": "string"
+            },
+            "startDate": {
+              "type": "string"
+            },
+            "endDate": {
+              "type": "string"
+            },
+            "completedDate": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "PENDING", "IN_PROGRESS", "COMPLETED"
+              ],
+              "default": "PENDING"
+            },
+            "blocks": {
+              "type": "array"
+            },
+            "description": {
+              "type": "string"
+            }
+          }
+        },
+        "FarmFeed": {
+          "type": "object",
+          "properties": {
+            "task": {
+              "type": "string"
+            },
+            "blocks": {
+              "type": "array"
+            },
+            "farm": {
+              "type": "string"
+            },
+            "plantInfo": {
+              "type": "object",
+              "properties": {
+                "population": {
+                  "type": "string"
+                },
+                "stage": {
+                  "type": "string"
+                }
+              }
+            },
+            "summary": {
+              "type": "string"
+            },
+            "likes": {
+              "type": "string"
+            },
+            "media": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "video",
+                      "image",
+                      "application"
+                    ]
+                  },
+                  "url": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "requestBodies": {
+        "Location": {
+          "description": "needed to create the required location on success",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Location"
+              }
+            }
+          },
+          "required": true
+        },
+        "Block": {
+          "description": "needed to create the required block on success",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Block"
+              }
+            }
+          },
+          "required": true
+        },
+        "Inventory": {
+          "description": "needed to create the required inventory on success",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Inventory"
+              }
+            }
+          },
+          "required": true
+        },
+        "Activity": {
+          "description": "needed to create the required activity on success",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Activity"
+              }
+            }
+          },
+          "required": true
+        },
+        "Task": {
+          "description": "Task payload that is needed to create tasks",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Task"
+              }
+            }
+          },
+          "required": true
+        },
+        "TaskScheduler": {
+          "description": "Task Scheduler payload that is needed to create task scheduling records",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TaskScheduler"
+              }
+            }
+          },
+          "required": true
+        },
+        "CropCategory": {
+          "description": "needed to create the required a crop category",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CropCategory"
+              }
+            }
+          },
+          "required": true
+        },
+        "CreateCrop": {
+          "description": "needed to create the required crop on success",
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "cropImg": {
+                    "type": "string",
+                    "format": "base64"
+                  },
+                  "category": {
+                    "type": "string"
+                  },
+                  "cycle": {
+                    "type": "string",
+                    "properties": {
+                      "min": {
+                        "type": "number"
+                      },
+                      "max": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              },
+              "encoding": {
+                "cropImg": {
+                  "contentType": "image/png, image/jpeg"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "CreateCropVariety": {
+          "description": "needed to create the required crop on success",
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "cropvarImg": {
+                    "type": "string",
+                    "format": "base64"
+                  },
+                  "crop": {
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "cropvarImg": {
+                  "contentType": "image/png, image/jpeg"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "Farm": {
+          "description": "needed to create the required Farm on success",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Farm"
+              }
+            }
+          },
+          "required": true
+        },
+        "Update-Schedulers": {
+          "description": "needed to patch the required schedulers on success",
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "actual_endDate": {
+                    "type": "string"
+                  },
+                  "media": {
+                    "type": "array",
+                    "items": {
+                      "type": "file"
+                    }
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": ["IN_PROGRESS", "COMPLETED"]
+                  },
+                  "updateComments": {
+                    "type": "string"
+                  }
+  
+                }
+              }
+             
+            }
+          },
+          "required": true
+        },
+        "FarmFeed": {
+          "description": "needed to create the required farm-feed on success",
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "farm": {
+                    "type": "string"
+                  },
+                  "block": {
+                    "type": "string"
+                  },
+                  "task": {
+                    "type": "string"
+                  },
+                  "nextTask": {
+                    "type": "string"
+                  },
+                  "media": {
+                    "type": "array",
+                    "items": {
+                      "type": "file"
+                    }
+                  },
+                  "plantInfo": {
+                    "type": "string",
+                    "description": "{'population': '', 'stage': '', 'chlorophyl': '', 'productivity': '', 'health': ''}"
+                  },
+                  "summary": {
+                    "type": "string"
+                  }
+                }
+              }
+             
+            }
+          },
+          "required": true
+        }
+      },
+      "responses": {
+        "Location": {
+          "description": "Successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "statusCode": {
+                    "type": "number"
+                  },
+                  "data": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Location"
+                  },
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Locations": {
+          "description": "Successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "statusCode": {
+                    "type": "number"
+                  },
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/Location"
+                    }
+                  },
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Block": {
+          "description": "Successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "statusCode": {
+                    "type": "number"
+                  },
+                  "data": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Block"
+                  },
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Blocks": {
+          "description": "Successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "statusCode": {
+                    "type": "number"
+                  },
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/Block"
+                    }
+                  },
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Inventory": {
+          "description": "Successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "statusCode": {
+                    "type": "number"
+                  },
+                  "data": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Inventory"
+                  },
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Inventories": {
+          "description": "Successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "statusCode": {
+                    "type": "number"
+                  },
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/Inventory"
+                    }
+                  },
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Activity": {
+          "description": "Successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "statusCode": {
+                    "type": "number"
+                  },
+                  "data": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Activity"
+                  },
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Activities": {
+          "description": "Successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "statusCode": {
+                    "type": "number"
+                  },
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/Activity"
+                    }
+                  },
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Task": {
+          "description": "Successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "statusCode": {
+                    "type": "number"
+                  },
+                  "data": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Task"
+                  },
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Tasks": {
+          "description": "Successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "statusCode": {
+                    "type": "number"
+                  },
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/Task"
+                    }
+                  },
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "TaskScheduler": {
+          "description": "Successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "statusCode": {
+                    "type": "number"
+                  },
+                  "data": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/TaskScheduler"
+                  },
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "TaskSchedulers": {
+          "description": "Successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "statusCode": {
+                    "type": "number"
+                  },
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/TaskScheduler"
+                    }
+                  },
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "CropCategory": {
+          "description": "Successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "statusCode": {
+                    "type": "number"
+                  },
+                  "data": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/CropCategory"
+                  },
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "CropCategories": {
+          "description": "Successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "statusCode": {
+                    "type": "number"
+                  },
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/CropCategory"
+                    }
+                  },
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Crop": {
+          "description": "Successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "statusCode": {
+                    "type": "number"
+                  },
+                  "data": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Crop"
+                  },
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Crops": {
+          "description": "Successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "statusCode": {
+                    "type": "number"
+                  },
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/Crops"
+                    }
+                  },
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "CropVariety": {
+          "description": "Successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "statusCode": {
+                    "type": "number"
+                  },
+                  "data": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/CropVariety"
+                  },
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "CropVarieties": {
+          "description": "Successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "statusCode": {
+                    "type": "number"
+                  },
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/CropVariety"
+                    }
+                  },
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Farm": {
+          "description": "Successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "statusCode": {
+                    "type": "number"
+                  },
+                  "data": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Farm"
+                  },
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Farms": {
+          "description": "Successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "statusCode": {
+                    "type": "number"
+                  },
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/Farm"
+                    }
+                  },
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "FarmFeed": {
+          "description": "Successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "statusCode": {
+                    "type": "number"
+                  },
+                  "data": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/FarmFeed"
+                  },
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "FarmFeeds": {
+          "description": "Successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "statusCode": {
+                    "type": "number"
+                  },
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/FarmFeed"
+                    }
+                  },
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Message": {
+          "description": "Successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "statusCode": {
+                    "type": "number"
+                  },
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Error": {
+          "description": "Bad Request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "statusCode": {
+                    "type": "number"
+                  },
+                  "error": {
+                    "type": "string"
+                  },
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Unauthorized": {
+          "description": "Access token is missing or invalid",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "NotFound": {
+          "description": "Not found",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Forbidden": {
+          "description": "Forbidden from accessing this route",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "ServerError": {
+          "description": "Unexpected server error",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "securitySchemes": {
+        "BearerAuth": {
+          "type": "http",
+          "scheme": "bearer",
+          "description": "Access token for protected resources"
+        }
+      }
+    }
+  }
