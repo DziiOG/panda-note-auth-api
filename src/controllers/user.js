@@ -220,7 +220,7 @@ module.exports.factory = class extends BaseController {
         // Generate authentication token for user
         const data = await user.generateAuthToken()
         // cache user in redis and return
-        await this.authenticate.cacheUser(data.authToken, data.user)
+        // await this.authenticate.cacheUser(data.authToken, data.user)
         this.response.successWithData(res, data)
       }
     } catch (error) {

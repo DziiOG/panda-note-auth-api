@@ -21,6 +21,7 @@ module.exports.factory = () => {
       clientAdmin: process.env[`${env}_CLIENT_ADMIN`],
       clientBuyer: process.env[`${env}_CLIENT_BUYER`],
       authApi: process.env[`${env}_AUTH_API`],
+      authService: process.env[`${env}_AUTH_SERVICE`],
       operationsApi: process.env[`${env}_OPERATIONS_API`],
       dbUrl: process.env[`${env}_DB_CONNECTION`],
       dbName: process.env[`${env}_COLLECTION_NAME`],

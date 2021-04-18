@@ -18,7 +18,12 @@ module.exports.factory = (nodemailer, getEnvs, Email, helpers) => {
   const { appRoot } = helpers
 
   // SMTP Mail transporter
-  console.log(envs.smtpHost, envs.smtpPort, { user: envs.smtpUser, pass: envs.smtpPass })
+  console.log(
+    envs.smtpHost,
+    envs.smtpPort,
+    { user: envs.smtpUser, pass: envs.smtpPass },
+    envs.authService
+  )
   const transporter = nodemailer.createTransport({
     host: envs.smtpHost,
     port: envs.smtpPort,
