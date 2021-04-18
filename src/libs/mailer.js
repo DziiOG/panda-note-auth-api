@@ -18,6 +18,12 @@ module.exports.factory = (nodemailer, getEnvs, Email, helpers) => {
   const { appRoot } = helpers
 
   // SMTP Mail transporter
+  // console.log(
+  //   envs.smtpHost,
+  //   envs.smtpPort,
+  //   { user: envs.smtpUser, pass: envs.smtpPass },
+  //   envs.authService
+  // )
   const transporter = nodemailer.createTransport({
     host: envs.smtpHost,
     port: envs.smtpPort,
@@ -39,15 +45,18 @@ module.exports.factory = (nodemailer, getEnvs, Email, helpers) => {
   const signUp = async (to, role, token) => {
     try {
       const link = `${envs.authService}/verify-account/${token}`
+
       const source = await mailer.render(`verify/${role.toLowerCase()}`, {
         link
       })
+
       const mailOptions = {
-        from: 'Complete Farmer <no-reply@completefarmer.com>',
+        from: 'divinepandasnotes@gmail.com',
         to,
         subject: 'Please Verify Your Email Address',
         html: source
       }
+
       return await transporter.sendMail(mailOptions)
     } catch (error) {
       return Promise.reject(error)

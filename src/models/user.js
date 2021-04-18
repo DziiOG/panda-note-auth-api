@@ -8,7 +8,7 @@ module.exports.dependencies = ['mongoose', 'lodash', 'bcrypt', 'jsonwebtoken', '
 module.exports.factory = (mongoose, lodash, bcrypt, jwt, getEnvs, helpers) => {
   'use strict'
 
-  const { upperFirst } = lodash
+  // const { upperFirst } = lodash
 
   // Get application configuration based on environment
   const envs = getEnvs(process.env.NODE_ENV)
@@ -19,14 +19,14 @@ module.exports.factory = (mongoose, lodash, bcrypt, jwt, getEnvs, helpers) => {
   // Define schema for user
   const schema = new mongoose.Schema(
     {
-      firstName: {
-        type: String,
-        required: [true, 'First name is required for registration']
-      },
-      lastName: {
-        type: String,
-        required: [true, 'Last name is required for registration']
-      },
+      // firstName: {
+      //   type: String,
+      //   required: [true, 'First name is required for registration']
+      // },
+      // lastName: {
+      //   type: String,
+      //   required: [true, 'Last name is required for registration']
+      // },
       email: {
         type: String,
         unique: true,
@@ -39,16 +39,16 @@ module.exports.factory = (mongoose, lodash, bcrypt, jwt, getEnvs, helpers) => {
         minlength: 8,
         required: [true, 'Password is required for registration']
       },
-      dateOfBirth: {
-        type: String
-      },
-      phoneNumber: {
-        type: String,
-        required: [true, 'Phone number is required']
-      },
-      avatar: {
-        type: String
-      },
+      // dateOfBirth: {
+      //   type: String
+      // },
+      // phoneNumber: {
+      //   type: String,
+      //   required: [true, 'Phone number is required']
+      // },
+      // avatar: {
+      //   type: String
+      // },
       status: {
         type: String,
         enum: [ACTIVE, INACTIVE, RESET],
@@ -76,10 +76,10 @@ module.exports.factory = (mongoose, lodash, bcrypt, jwt, getEnvs, helpers) => {
   schema.pre('save', function (next) {
     const user = this
     // if user name(s) is modified make sure it meets naming standard
-    if (user.isModified('firstName') || user.isModified('lastName')) {
-      user.firstName = upperFirst(user.firstName.toLowerCase())
-      user.lastName = upperFirst(user.lastName.toLowerCase())
-    }
+    // if (user.isModified('firstName') || user.isModified('lastName')) {
+    //   user.firstName = upperFirst(user.firstName.toLowerCase())
+    //   user.lastName = upperFirst(user.lastName.toLowerCase())
+    // }
 
     // if password is modified encrypt it
     if (user.isModified('password')) {
@@ -89,19 +89,19 @@ module.exports.factory = (mongoose, lodash, bcrypt, jwt, getEnvs, helpers) => {
       )
     }
 
-    const { DIGITAL_FARMER, BUYER } = helpers.Roles
+    const { NOTER } = helpers.Roles
     // if user created is in house staff set account to active
-    if (![DIGITAL_FARMER, BUYER].includes(user.roles[0])) {
+    if (![NOTER].includes(user.roles[0])) {
       user.status = helpers.Status.ACTIVE
     }
 
     // generate a dummy avatar image for user
-    if (!user.avatar) {
-      user.avatar = `https://ui-avatars.com/api/?background=164B26&color=fff&name=${[
-        user.firstName,
-        user.lastName
-      ].join('%20')}`
-    }
+    // if (!user.avatar) {
+    //   user.avatar = `https://ui-avatars.com/api/?background=164B26&color=fff&name=${[
+    //     user.firstName,
+    //     user.lastName
+    //   ].join('%20')}`
+    // }
     next()
   })
 
