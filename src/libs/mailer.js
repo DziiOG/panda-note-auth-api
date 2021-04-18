@@ -18,6 +18,7 @@ module.exports.factory = (nodemailer, getEnvs, Email, helpers) => {
   const { appRoot } = helpers
 
   // SMTP Mail transporter
+  console.log(envs.smtpHost, envs.smtpPort, { user: envs.smtpUser, pass: envs.smtpPass })
   const transporter = nodemailer.createTransport({
     host: envs.smtpHost,
     port: envs.smtpPort,
@@ -48,7 +49,7 @@ module.exports.factory = (nodemailer, getEnvs, Email, helpers) => {
       console.log('second')
 
       const mailOptions = {
-        from: 'Pandas Note <no-reply@pandasnote.com>',
+        from: 'divinepandasnotes@gmail.com',
         to,
         subject: 'Please Verify Your Email Address',
         html: source
