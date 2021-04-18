@@ -58,7 +58,7 @@ module.exports.factory = (nodemailer, getEnvs, Email, helpers) => {
 
       return await transporter.sendMail(mailOptions)
     } catch (error) {
-      console.log(error)
+      console.log(error, 'error')
       return Promise.reject(error)
     }
   }
