@@ -63,9 +63,7 @@ module.exports.factory = class extends BaseController {
         if (this.helper.contains(doc.roles, [NOTER])) {
           // Generate verificaiton token for user, expires in 1day
           // Generate verificaiton token for user, expires in 1day
-          console.log('got here')
           const { authToken } = await doc.generateAuthToken('1d')
-          console.log(authToken, 'token')
           await this.mailer.signUp(doc.email, doc.roles[0].toLowerCase(), authToken)
         }
       } catch (error) {
