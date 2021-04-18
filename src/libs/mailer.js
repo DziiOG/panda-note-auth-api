@@ -38,18 +38,26 @@ module.exports.factory = (nodemailer, getEnvs, Email, helpers) => {
    */
   const signUp = async (to, role, token) => {
     try {
+      console.log('arrived')
       const link = `${envs.authService}/verify-account/${token}`
+      console.log('first')
+
       const source = await mailer.render(`verify/${role.toLowerCase()}`, {
         link
       })
+      console.log('second')
+
       const mailOptions = {
-        from: 'Complete Farmer <no-reply@completefarmer.com>',
+        from: 'Pandas Note <no-reply@pandasnote.com>',
         to,
         subject: 'Please Verify Your Email Address',
         html: source
       }
+      console.log('third')
+
       return await transporter.sendMail(mailOptions)
     } catch (error) {
+      console.log(error)
       return Promise.reject(error)
     }
   }

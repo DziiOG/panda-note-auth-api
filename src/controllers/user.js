@@ -13,6 +13,7 @@ module.exports.dependencies = [
   'UserRepository',
   'authenticate',
   'miscHelper',
+  'Mailer',
   'logger',
   'response',
   'mongoose'
@@ -31,7 +32,7 @@ module.exports.factory = class extends BaseController {
    * @param {object} response - response handler object
    * @param {object} mongoose mongodb middleware
    */
-  constructor(repo, authenticate, helper, logger, response, mongoose) {
+  constructor(repo, authenticate, helper, mailer, logger, response, mongoose) {
     super(repo, helper, logger, response, mongoose)
 
     this.name = 'User'
@@ -41,7 +42,7 @@ module.exports.factory = class extends BaseController {
     this.logger = logger
     this.response = response
     this.authenticate = authenticate
-
+    this.mailer = mailer
     this.login = this.login.bind(this)
     this.logout = this.logout.bind(this)
     this.preInsert = this.preInsert.bind(this)
@@ -61,6 +62,11 @@ module.exports.factory = class extends BaseController {
         const { NOTER } = this.helper.Roles
         if (this.helper.contains(doc.roles, [NOTER])) {
           // Generate verificaiton token for user, expires in 1day
+          // Generate verificaiton token for user, expires in 1day
+          console.log('got here')
+          const { authToken } = await doc.generateAuthToken('1d')
+          console.log(authToken, 'token')
+          await this.mailer.signUp(doc.email, doc.roles[0].toLowerCase(), authToken)
         }
       } catch (error) {
         this.log(error)
@@ -117,7 +123,6 @@ module.exports.factory = class extends BaseController {
       // throw error if email already exist
       const result = await this.repo.getOne({ email: req.body.email })
       if (result) throw new Error('A user with this email already exist')
-      req.body.address = { country: req.body.country }
       req.body.roles = [req.body.role]
       next()
     } catch (error) {
