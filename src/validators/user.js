@@ -14,17 +14,17 @@ module.exports.factory = (_celebrate, helpers) => {
 
   const post = celebrate({
     body: Joi.object().keys({
-      firstName: Joi.string()
-        .regex(/^(?![\s.]+$)[a-zA-Z\s-_.]*$/)
-        .required(),
-      lastName: Joi.string()
-        .regex(/^(?![\s.]+$)[a-zA-Z\s-_.]*$/)
-        .required(),
+      // firstName: Joi.string()
+      //   .regex(/^(?![\s.]+$)[a-zA-Z\s-_.]*$/)
+      //   .required(),
+      // lastName: Joi.string()
+      //   .regex(/^(?![\s.]+$)[a-zA-Z\s-_.]*$/)
+      //   .required(),
       email: Joi.string().email({ minDomainSegments: 2 }).required(),
-      phoneNumber: Joi.string()
-        .regex(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/)
-        .required(),
-      country: Joi.string().required(),
+      // phoneNumber: Joi.string()
+      //   .regex(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/)
+      //   .required(),
+      // country: Joi.string().required(),
       role: Joi.string().valid(ADMIN, NOTER).required(),
       password: Joi.string().when('role', {
         is: [NOTER],
@@ -38,20 +38,20 @@ module.exports.factory = (_celebrate, helpers) => {
 
   const patch = celebrate({
     body: Joi.object().keys({
-      firstName: Joi.string().regex(/^(?![\s.]+$)[a-zA-Z\s-_.]*$/),
-      lastName: Joi.string().regex(/^(?![\s.]+$)[a-zA-Z\s-_.]*$/),
-      dateOfBirth: Joi.date(),
-      phoneNumber: Joi.string().regex(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/),
-      address: Joi.object().keys({
-        street: Joi.string().min(2),
-        state: Joi.string().min(2),
-        country: Joi.string().min(2)
-      }),
+      // firstName: Joi.string().regex(/^(?![\s.]+$)[a-zA-Z\s-_.]*$/),
+      // lastName: Joi.string().regex(/^(?![\s.]+$)[a-zA-Z\s-_.]*$/),
+      // dateOfBirth: Joi.date(),
+      // phoneNumber: Joi.string().regex(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/),
+      // address: Joi.object().keys({
+      //   street: Joi.string().min(2),
+      //   state: Joi.string().min(2),
+      //   country: Joi.string().min(2)
+      // }),
       roles: Joi.array().items(Joi.string().valid(ADMIN, NOTER).required()),
-      signature: Joi.object().keys({
-        string: Joi.string(),
-        check: Joi.string()
-      }),
+      // signature: Joi.object().keys({
+      //   string: Joi.string(),
+      //   check: Joi.string()
+      // }),
       status: Joi.string().valid(ACTIVE, INACTIVE)
     })
   })

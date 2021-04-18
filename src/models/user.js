@@ -19,14 +19,14 @@ module.exports.factory = (mongoose, lodash, bcrypt, jwt, getEnvs, helpers) => {
   // Define schema for user
   const schema = new mongoose.Schema(
     {
-      firstName: {
-        type: String,
-        required: [true, 'First name is required for registration']
-      },
-      lastName: {
-        type: String,
-        required: [true, 'Last name is required for registration']
-      },
+      // firstName: {
+      //   type: String,
+      //   required: [true, 'First name is required for registration']
+      // },
+      // lastName: {
+      //   type: String,
+      //   required: [true, 'Last name is required for registration']
+      // },
       email: {
         type: String,
         unique: true,
@@ -39,16 +39,16 @@ module.exports.factory = (mongoose, lodash, bcrypt, jwt, getEnvs, helpers) => {
         minlength: 8,
         required: [true, 'Password is required for registration']
       },
-      dateOfBirth: {
-        type: String
-      },
-      phoneNumber: {
-        type: String,
-        required: [true, 'Phone number is required']
-      },
-      avatar: {
-        type: String
-      },
+      // dateOfBirth: {
+      //   type: String
+      // },
+      // phoneNumber: {
+      //   type: String,
+      //   required: [true, 'Phone number is required']
+      // },
+      // avatar: {
+      //   type: String
+      // },
       status: {
         type: String,
         enum: [ACTIVE, INACTIVE, RESET],
